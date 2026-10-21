@@ -1,6 +1,6 @@
 # SILMARILS-MV
 
-Research code for **SILMARILS** ([arXiv:2605.03230](https://arxiv.org/abs/2605.03230)), an information-theoretic and quantum-secure designated-verifier signature framework, and **SILMARILS-MV**, a multi-validator extension with threshold notarization and HotStuff-scale evaluation (IEEE TIFS submission; preprint forthcoming).
+Research code for **SILMARILS-MV**, a multi-validator extension of SILMARILS with threshold notarization and HotStuff-scale evaluation (IEEE TIFS submission; preprint forthcoming). The repo also includes simulation and demo code for the **original SILMARILS** framework ([arXiv:2605.03230](https://arxiv.org/abs/2605.03230)).
 
 ## Layout
 
