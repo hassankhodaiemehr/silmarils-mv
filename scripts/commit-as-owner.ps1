@@ -4,7 +4,7 @@ param(
   [string]$Message
 )
 $ErrorActionPreference = "Stop"
-$emptyHooks = Join-Path $PSScriptRoot ".." ".empty_hooks"
+$emptyHooks = Join-Path (Join-Path $PSScriptRoot "..") ".empty_hooks"
 if (-not (Test-Path $emptyHooks)) { New-Item -ItemType Directory -Path $emptyHooks | Out-Null }
 $env:GIT_AUTHOR_NAME = "Hassan Khodaiemehr"
 $env:GIT_AUTHOR_EMAIL = "hassankhodaiemehr@gmail.com"
