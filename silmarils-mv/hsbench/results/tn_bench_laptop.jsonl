@@ -1,0 +1,14 @@
+{"n":4,"t":1,"omega":16,"psi":64,"share_ns":15681,"combine_opt_ns":8205,"cert_verify_ns":1948,"fallback_ns":27738,"cert_bytes":544,"ok_opt":1,"ok_fallback":1}
+{"n":7,"t":2,"omega":16,"psi":64,"share_ns":14575,"combine_opt_ns":8613,"cert_verify_ns":1973,"fallback_ns":41034,"cert_bytes":544,"ok_opt":1,"ok_fallback":1}
+{"n":10,"t":3,"omega":16,"psi":64,"share_ns":14950,"combine_opt_ns":8259,"cert_verify_ns":1960,"fallback_ns":50365,"cert_bytes":544,"ok_opt":1,"ok_fallback":1}
+{"n":31,"t":10,"omega":16,"psi":64,"share_ns":14585,"combine_opt_ns":12369,"cert_verify_ns":1864,"fallback_ns":174108,"cert_bytes":544,"ok_opt":1,"ok_fallback":1}
+{"n":100,"t":33,"omega":16,"psi":64,"share_ns":14596,"combine_opt_ns":36208,"cert_verify_ns":1891,"fallback_ns":1204600,"cert_bytes":544,"ok_opt":1,"ok_fallback":1}
+{"n":301,"t":100,"omega":16,"psi":64,"share_ns":14524,"combine_opt_ns":200532,"cert_verify_ns":1969,"fallback_ns":8748526,"cert_bytes":544,"ok_opt":1,"ok_fallback":1}
+{"n":1000,"t":333,"omega":16,"psi":64,"share_ns":15192,"combine_opt_ns":2101680,"cert_verify_ns":1920,"fallback_ns":99204463,"cert_bytes":544,"ok_opt":1,"ok_fallback":1}
+{"n":4,"t":1,"omega":32,"psi":64,"share_ns":28389,"combine_opt_ns":8822,"cert_verify_ns":2172,"fallback_ns":34894,"cert_bytes":1056,"ok_opt":1,"ok_fallback":1}
+{"n":7,"t":2,"omega":32,"psi":64,"share_ns":27811,"combine_opt_ns":9859,"cert_verify_ns":2318,"fallback_ns":41487,"cert_bytes":1056,"ok_opt":1,"ok_fallback":1}
+{"n":10,"t":3,"omega":32,"psi":64,"share_ns":28206,"combine_opt_ns":9419,"cert_verify_ns":1996,"fallback_ns":49261,"cert_bytes":1056,"ok_opt":1,"ok_fallback":1}
+{"n":31,"t":10,"omega":32,"psi":64,"share_ns":27167,"combine_opt_ns":15299,"cert_verify_ns":2010,"fallback_ns":206251,"cert_bytes":1056,"ok_opt":1,"ok_fallback":1}
+{"n":100,"t":33,"omega":32,"psi":64,"share_ns":27577,"combine_opt_ns":45030,"cert_verify_ns":2189,"fallback_ns":1324279,"cert_bytes":1056,"ok_opt":1,"ok_fallback":1}
+{"n":301,"t":100,"omega":32,"psi":64,"share_ns":27192,"combine_opt_ns":234523,"cert_verify_ns":2118,"fallback_ns":8994966,"cert_bytes":1056,"ok_opt":1,"ok_fallback":1}
+{"n":1000,"t":333,"omega":32,"psi":64,"share_ns":26987,"combine_opt_ns":2128060,"cert_verify_ns":2091,"fallback_ns":94689600,"cert_bytes":1056,"ok_opt":1,"ok_fallback":1}

@@ -1,0 +1,580 @@
+{
+  "paper": "IACR CIC SILMARILS",
+  "artifacts": {
+    "sk_bytes": 32,
+    "pk_bytes": 32,
+    "sigma_alg_bytes": 128,
+    "receipt_bytes": 32,
+    "ledger_field_bytes": 192
+  },
+  "ledger_config": {
+    "validators": 7,
+    "tx_per_block": 500,
+    "blocks_per_minute": 2.0,
+    "consensus_rounds_per_block": 3,
+    "user_tx_ratio": 0.85
+  },
+  "pq_timing_source": "measured on 13th Gen Intel(R) Core(TM) i9-13900HX (2026-07-08); pqcrypto 0.4.0",
+  "pq_timings_us": {
+    "Dilithium-2": {
+      "sign_us": 374.51,
+      "verify_us": 87.82,
+      "source": "hardware",
+      "platform": "13th Gen Intel(R) Core(TM) i9-13900HX (2026-07-08)"
+    },
+    "Falcon-512": {
+      "sign_us": 3796.32,
+      "verify_us": 33.73,
+      "source": "hardware",
+      "platform": "13th Gen Intel(R) Core(TM) i9-13900HX (2026-07-08)"
+    },
+    "SPHINCS+-128f": {
+      "sign_us": 76183.06,
+      "verify_us": 5775.84,
+      "source": "hardware",
+      "platform": "13th Gen Intel(R) Core(TM) i9-13900HX (2026-07-08)"
+    },
+    "SPHINCS+-128s": {
+      "sign_us": 2035882.58,
+      "verify_us": 2606.75,
+      "source": "hardware",
+      "platform": "13th Gen Intel(R) Core(TM) i9-13900HX (2026-07-08)"
+    }
+  },
+  "two_party": {
+    "silmarils": {
+      "mode": "two-party",
+      "sig_bytes_per_auth": 128,
+      "tx_auth_bytes": 54400,
+      "consensus_auth_bytes": 16128,
+      "total_auth_bytes_per_block": 70528,
+      "auth_kib_per_block": 68.875,
+      "auth_mib_per_minute": 0.134521484375,
+      "est_sign_cpu_ms_per_block": 70.71864599070977,
+      "est_verify_cpu_ms_per_block": 151.57662598008756
+    },
+    "dilithium2": {
+      "mode": "two-party",
+      "sig_bytes_per_auth": 2420,
+      "tx_auth_bytes": 1028500,
+      "consensus_auth_bytes": 304920,
+      "total_auth_bytes_per_block": 1333420,
+      "auth_kib_per_block": 1302.16796875,
+      "auth_mib_per_minute": 2.5432968139648438,
+      "est_sign_cpu_ms_per_block": 206.35501000000002,
+      "est_verify_cpu_ms_per_block": 103.71542
+    },
+    "size_ratio": 18.91,
+    "sil_timing_us": {
+      "sign": 128.34599998313934,
+      "verify": 128.34599998313934
+    }
+  },
+  "tps": {
+    "base_tps": 10000,
+    "hybrid": {
+      "scheme": "Hybrid",
+      "cpu_tps": 9800,
+      "bandwidth_tps": 10000,
+      "combined_tps": 9800,
+      "cpu_loss_pct": 2.0,
+      "bandwidth_loss_pct": 0.0,
+      "bottleneck": "cpu"
+    },
+    "silmarils": {
+      "scheme": "SILMARILS",
+      "cpu_tps": 9930,
+      "bandwidth_tps": 10000,
+      "combined_tps": 9930,
+      "cpu_loss_pct": 0.7,
+      "bandwidth_loss_pct": 0.0,
+      "bottleneck": "cpu"
+    },
+    "dilithium2": {
+      "scheme": "Dilithium-2",
+      "cpu_tps": 9900,
+      "bandwidth_tps": 1970,
+      "combined_tps": 1970,
+      "cpu_loss_pct": 1.0,
+      "bandwidth_loss_pct": 80.3,
+      "bottleneck": "block cap"
+    },
+    "falcon512": {
+      "scheme": "Falcon-512",
+      "cpu_tps": 9290,
+      "bandwidth_tps": 6900,
+      "combined_tps": 6900,
+      "cpu_loss_pct": 7.1,
+      "bandwidth_loss_pct": 31.0,
+      "bottleneck": "block cap"
+    },
+    "sphincs128f": {
+      "scheme": "SPHINCS+-128f",
+      "cpu_tps": 500,
+      "bandwidth_tps": 500,
+      "combined_tps": 500,
+      "cpu_loss_pct": 95.0,
+      "bandwidth_loss_pct": 95.0,
+      "bottleneck": "cpu"
+    },
+    "sphincs128s": {
+      "scheme": "SPHINCS+-128s",
+      "cpu_tps": 500,
+      "bandwidth_tps": 610,
+      "combined_tps": 500,
+      "cpu_loss_pct": 95.0,
+      "bandwidth_loss_pct": 93.9,
+      "bottleneck": "cpu"
+    },
+    "full_pq_retrofit": 1300
+  },
+  "three_party_ic": {
+    "message_sizes": {
+      "p1_to_p2_bytes": 128,
+      "p1_to_p3_bytes": 96,
+      "broadcast_bytes": 96,
+      "transfer_bytes": 224,
+      "wire_bytes_per_relayed_tx": 544
+    },
+    "relay_ratio_1.0": {
+      "relay_auth_bytes_per_tx": 544,
+      "direct_auth_bytes_per_tx": 128,
+      "relay_ratio": 1.0,
+      "mixed_user_auth_bytes": 231200,
+      "mixed_total_auth_bytes_per_block": 247328,
+      "mixed_auth_kib_per_block": 241.53125,
+      "overhead_vs_two_party_pct": 325.0,
+      "overhead_vs_two_party_bytes": 176800,
+      "est_sign_cpu_ms_per_block": 95.4701720874582,
+      "est_verify_cpu_ms_per_block": 189.47078247510944,
+      "ic_sizes": {
+        "p1_to_p2_bytes": 128,
+        "p1_to_p3_bytes": 96,
+        "broadcast_bytes": 96,
+        "transfer_bytes": 224,
+        "wire_bytes_per_relayed_tx": 544
+      }
+    },
+    "relay_ratio_0.5": {
+      "relay_auth_bytes_per_tx": 544,
+      "direct_auth_bytes_per_tx": 128,
+      "relay_ratio": 0.5,
+      "mixed_user_auth_bytes": 142592,
+      "mixed_total_auth_bytes_per_block": 158720,
+      "mixed_auth_kib_per_block": 155.0,
+      "overhead_vs_two_party_pct": 162.11764705882354,
+      "overhead_vs_two_party_bytes": 88192,
+      "est_sign_cpu_ms_per_block": 83.06528959661722,
+      "est_verify_cpu_ms_per_block": 170.47912286701612,
+      "ic_sizes": {
+        "p1_to_p2_bytes": 128,
+        "p1_to_p3_bytes": 96,
+        "broadcast_bytes": 96,
+        "transfer_bytes": 224,
+        "wire_bytes_per_relayed_tx": 544
+      }
+    }
+  },
+  "workload_curve": [
+    {
+      "validators": 3,
+      "sil_kib": 55.4,
+      "pq_fal_kib": 298.5,
+      "pq_dil_kib": 1046.9,
+      "pq_dilthree_kib": 1424.6,
+      "pq_slhi_kib": 1668.2,
+      "pq_sphsmall_kib": 3398.6,
+      "pq_slhii_kib": 3353.6,
+      "pq_sphfast_kib": 7392.6,
+      "pq_slhiii_kib": 6465.0
+    },
+    {
+      "validators": 5,
+      "sil_kib": 60.6,
+      "pq_fal_kib": 326.8,
+      "pq_dil_kib": 1146.2,
+      "pq_dilthree_kib": 1559.7,
+      "pq_slhi_kib": 1826.3,
+      "pq_sphsmall_kib": 3720.9,
+      "pq_slhii_kib": 3671.6,
+      "pq_sphfast_kib": 8093.4,
+      "pq_slhiii_kib": 7078.0
+    },
+    {
+      "validators": 7,
+      "sil_kib": 68.9,
+      "pq_fal_kib": 371.3,
+      "pq_dil_kib": 1302.2,
+      "pq_dilthree_kib": 1771.9,
+      "pq_slhi_kib": 2074.9,
+      "pq_sphsmall_kib": 4227.2,
+      "pq_slhii_kib": 4171.2,
+      "pq_sphfast_kib": 9194.8,
+      "pq_slhiii_kib": 8041.2
+    },
+    {
+      "validators": 9,
+      "sil_kib": 80.1,
+      "pq_fal_kib": 431.9,
+      "pq_dil_kib": 1514.9,
+      "pq_dilthree_kib": 2061.3,
+      "pq_slhi_kib": 2413.8,
+      "pq_sphsmall_kib": 4917.7,
+      "pq_slhii_kib": 4852.6,
+      "pq_sphfast_kib": 10696.7,
+      "pq_slhiii_kib": 9354.6
+    },
+    {
+      "validators": 11,
+      "sil_kib": 94.4,
+      "pq_fal_kib": 508.7,
+      "pq_dil_kib": 1784.3,
+      "pq_dilthree_kib": 2427.9,
+      "pq_slhi_kib": 2843.0,
+      "pq_sphsmall_kib": 5792.3,
+      "pq_slhii_kib": 5715.6,
+      "pq_sphfast_kib": 12599.1,
+      "pq_slhiii_kib": 11018.3
+    },
+    {
+      "validators": 15,
+      "sil_kib": 131.9,
+      "pq_fal_kib": 710.9,
+      "pq_dil_kib": 2493.3,
+      "pq_dilthree_kib": 3392.7,
+      "pq_slhi_kib": 3972.7,
+      "pq_sphsmall_kib": 8093.8,
+      "pq_slhii_kib": 7986.7,
+      "pq_sphfast_kib": 17605.3,
+      "pq_slhiii_kib": 15396.4
+    },
+    {
+      "validators": 21,
+      "sil_kib": 210.6,
+      "pq_fal_kib": 1135.4,
+      "pq_dil_kib": 3982.1,
+      "pq_dilthree_kib": 5418.7,
+      "pq_slhi_kib": 6345.1,
+      "pq_sphsmall_kib": 12927.1,
+      "pq_slhii_kib": 12756.0,
+      "pq_sphfast_kib": 28118.4,
+      "pq_slhiii_kib": 24590.5
+    }
+  ],
+  "pq_workload_curves": {
+    "Falcon-512": [
+      {
+        "validators": 3,
+        "kib": 298.5
+      },
+      {
+        "validators": 5,
+        "kib": 326.8
+      },
+      {
+        "validators": 7,
+        "kib": 371.3
+      },
+      {
+        "validators": 9,
+        "kib": 431.9
+      },
+      {
+        "validators": 11,
+        "kib": 508.7
+      },
+      {
+        "validators": 15,
+        "kib": 710.9
+      },
+      {
+        "validators": 21,
+        "kib": 1135.4
+      }
+    ],
+    "Dilithium-2": [
+      {
+        "validators": 3,
+        "kib": 1046.9
+      },
+      {
+        "validators": 5,
+        "kib": 1146.2
+      },
+      {
+        "validators": 7,
+        "kib": 1302.2
+      },
+      {
+        "validators": 9,
+        "kib": 1514.9
+      },
+      {
+        "validators": 11,
+        "kib": 1784.3
+      },
+      {
+        "validators": 15,
+        "kib": 2493.3
+      },
+      {
+        "validators": 21,
+        "kib": 3982.1
+      }
+    ],
+    "Dilithium-3": [
+      {
+        "validators": 3,
+        "kib": 1424.6
+      },
+      {
+        "validators": 5,
+        "kib": 1559.7
+      },
+      {
+        "validators": 7,
+        "kib": 1771.9
+      },
+      {
+        "validators": 9,
+        "kib": 2061.3
+      },
+      {
+        "validators": 11,
+        "kib": 2427.9
+      },
+      {
+        "validators": 15,
+        "kib": 3392.7
+      },
+      {
+        "validators": 21,
+        "kib": 5418.7
+      }
+    ],
+    "SLH-DSA-128-24": [
+      {
+        "validators": 3,
+        "kib": 1668.2
+      },
+      {
+        "validators": 5,
+        "kib": 1826.3
+      },
+      {
+        "validators": 7,
+        "kib": 2074.9
+      },
+      {
+        "validators": 9,
+        "kib": 2413.8
+      },
+      {
+        "validators": 11,
+        "kib": 2843.0
+      },
+      {
+        "validators": 15,
+        "kib": 3972.7
+      },
+      {
+        "validators": 21,
+        "kib": 6345.1
+      }
+    ],
+    "SPHINCS+-128s": [
+      {
+        "validators": 3,
+        "kib": 3398.6
+      },
+      {
+        "validators": 5,
+        "kib": 3720.9
+      },
+      {
+        "validators": 7,
+        "kib": 4227.2
+      },
+      {
+        "validators": 9,
+        "kib": 4917.7
+      },
+      {
+        "validators": 11,
+        "kib": 5792.3
+      },
+      {
+        "validators": 15,
+        "kib": 8093.8
+      },
+      {
+        "validators": 21,
+        "kib": 12927.1
+      }
+    ],
+    "SLH-DSA-192-24": [
+      {
+        "validators": 3,
+        "kib": 3353.6
+      },
+      {
+        "validators": 5,
+        "kib": 3671.6
+      },
+      {
+        "validators": 7,
+        "kib": 4171.2
+      },
+      {
+        "validators": 9,
+        "kib": 4852.6
+      },
+      {
+        "validators": 11,
+        "kib": 5715.6
+      },
+      {
+        "validators": 15,
+        "kib": 7986.7
+      },
+      {
+        "validators": 21,
+        "kib": 12756.0
+      }
+    ],
+    "SPHINCS+-128f": [
+      {
+        "validators": 3,
+        "kib": 7392.6
+      },
+      {
+        "validators": 5,
+        "kib": 8093.4
+      },
+      {
+        "validators": 7,
+        "kib": 9194.8
+      },
+      {
+        "validators": 9,
+        "kib": 10696.7
+      },
+      {
+        "validators": 11,
+        "kib": 12599.1
+      },
+      {
+        "validators": 15,
+        "kib": 17605.3
+      },
+      {
+        "validators": 21,
+        "kib": 28118.4
+      }
+    ],
+    "SLH-DSA-256-24": [
+      {
+        "validators": 3,
+        "kib": 6465.0
+      },
+      {
+        "validators": 5,
+        "kib": 7078.0
+      },
+      {
+        "validators": 7,
+        "kib": 8041.2
+      },
+      {
+        "validators": 9,
+        "kib": 9354.6
+      },
+      {
+        "validators": 11,
+        "kib": 11018.3
+      },
+      {
+        "validators": 15,
+        "kib": 15396.4
+      },
+      {
+        "validators": 21,
+        "kib": 24590.5
+      }
+    ]
+  },
+  "relay_curve_full": [
+    {
+      "v": 3,
+      "two_party_kib": 55.4,
+      "three_party_kib": 228.0
+    },
+    {
+      "v": 5,
+      "two_party_kib": 60.6,
+      "three_party_kib": 233.3
+    },
+    {
+      "v": 7,
+      "two_party_kib": 68.9,
+      "three_party_kib": 241.5
+    },
+    {
+      "v": 9,
+      "two_party_kib": 80.1,
+      "three_party_kib": 252.8
+    },
+    {
+      "v": 11,
+      "two_party_kib": 94.4,
+      "three_party_kib": 267.0
+    },
+    {
+      "v": 15,
+      "two_party_kib": 131.9,
+      "three_party_kib": 304.5
+    },
+    {
+      "v": 21,
+      "two_party_kib": 210.6,
+      "three_party_kib": 383.3
+    }
+  ],
+  "relay_curve_half": [
+    {
+      "v": 3,
+      "two_party_kib": 55.4,
+      "three_party_kib": 141.5
+    },
+    {
+      "v": 5,
+      "two_party_kib": 60.6,
+      "three_party_kib": 146.8
+    },
+    {
+      "v": 7,
+      "two_party_kib": 68.9,
+      "three_party_kib": 155.0
+    },
+    {
+      "v": 9,
+      "two_party_kib": 80.1,
+      "three_party_kib": 166.2
+    },
+    {
+      "v": 11,
+      "two_party_kib": 94.4,
+      "three_party_kib": 180.5
+    },
+    {
+      "v": 15,
+      "two_party_kib": 131.9,
+      "three_party_kib": 218.0
+    },
+    {
+      "v": 21,
+      "two_party_kib": 210.6,
+      "three_party_kib": 296.8
+    }
+  ]
+}

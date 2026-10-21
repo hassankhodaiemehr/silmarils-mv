@@ -1,0 +1,50 @@
+[
+ {
+  "scheme": "Ed25519",
+  "impl": "native",
+  "pk": 32,
+  "sig": 64,
+  "sign_us": 13.785914437949764,
+  "verify_us": 31.313162374160417
+ },
+ {
+  "scheme": "ML-DSA-44",
+  "impl": "avx2",
+  "pk": 1312,
+  "sig": 2420,
+  "sign_us": 64.9417140955288,
+  "verify_us": 23.181092456941514
+ },
+ {
+  "scheme": "ML-DSA-65",
+  "impl": "avx2",
+  "pk": 1952,
+  "sig": 3309,
+  "sign_us": 104.41058070578408,
+  "verify_us": 37.38272204257864
+ },
+ {
+  "scheme": "Falcon-512",
+  "impl": "avx2",
+  "pk": 897,
+  "sig": 655,
+  "sign_us": 159.5533366573594,
+  "verify_us": 29.228017127491672
+ },
+ {
+  "scheme": "SLH-DSA-SHA2-128f",
+  "impl": "avx2",
+  "pk": 32,
+  "sig": 17088,
+  "sign_us": 6609.03605610561,
+  "verify_us": 568.1709965918773
+ },
+ {
+  "scheme": "SLH-DSA-SHA2-128s",
+  "impl": "avx2",
+  "pk": 32,
+  "sig": 7856,
+  "sign_us": 146157.80385714286,
+  "verify_us": 224.2350529147982
+ }
+]

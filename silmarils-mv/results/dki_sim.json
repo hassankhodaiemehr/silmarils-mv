@@ -1,0 +1,44 @@
+[
+ {
+  "n": 4,
+  "t": 1,
+  "omega": 1,
+  "psi": 4,
+  "N": 2,
+  "signers": 4,
+  "verifiers": 4,
+  "entries": 80,
+  "IPs": 160,
+  "total_elems": 3572,
+  "elems_per_IP": 22.325,
+  "keys_consistent": true
+ },
+ {
+  "n": 7,
+  "t": 2,
+  "omega": 2,
+  "psi": 4,
+  "N": 2,
+  "signers": 7,
+  "verifiers": 7,
+  "entries": 210,
+  "IPs": 490,
+  "total_elems": 20923,
+  "elems_per_IP": 42.7,
+  "keys_consistent": true
+ },
+ {
+  "n": 10,
+  "t": 3,
+  "omega": 3,
+  "psi": 4,
+  "N": 2,
+  "signers": 10,
+  "verifiers": 10,
+  "entries": 400,
+  "IPs": 1000,
+  "total_elems": 63360,
+  "elems_per_IP": 63.36,
+  "keys_consistent": true
+ }
+]

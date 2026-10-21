@@ -1,0 +1,15 @@
+{"impl":"native","n_sign":145076,"n_verify":63871,"pk":32,"scheme":"Ed25519 (dalek)","sig":64,"sign_us":13.785914437949764,"verify_us":31.313162374160417}
+{"impl":"avx2","n_sign":30797,"n_verify":86278,"pk":1312,"scheme":"ML-DSA-44","sig":2420,"sign_us":64.9417140955288,"verify_us":23.181092456941514}
+{"impl":"avx2","n_sign":19156,"n_verify":53501,"pk":1952,"scheme":"ML-DSA-65","sig":3309,"sign_us":104.41058070578408,"verify_us":37.38272204257864}
+{"impl":"avx2","n_sign":12535,"n_verify":68428,"pk":897,"scheme":"Falcon-512","sig":655,"sign_us":159.5533366573594,"verify_us":29.228017127491672}
+{"impl":"avx2","n_sign":303,"n_verify":3521,"pk":32,"scheme":"SPHINCS+-SHA2-128f-simple (SLH-DSA-SHA2-128f parameters)","sig":17088,"sign_us":6609.03605610561,"verify_us":568.1709965918773}
+{"impl":"avx2","n_sign":14,"n_verify":8920,"pk":32,"scheme":"SPHINCS+-SHA2-128s-simple (SLH-DSA-SHA2-128s parameters)","sig":7856,"sign_us":146157.80385714286,"verify_us":224.2350529147982}
+{"impl":"portable","incl_sha3":true,"n_sign":2383397,"n_verify":2364121,"omega":1,"psi":1,"scheme":"SILMARILS-MV (Rust)","sig":64,"sign_us":0.4195693424133705,"verify_us":0.42299022808054243}
+{"impl":"portable","incl_sha3":true,"n_sign":1035965,"n_verify":1241533,"omega":1,"psi":16,"scheme":"SILMARILS-MV (Rust)","sig":64,"sign_us":0.9652843271732152,"verify_us":0.8054562270998838}
+{"impl":"portable","incl_sha3":true,"n_sign":634910,"n_verify":1188281,"omega":3,"psi":16,"scheme":"SILMARILS-MV (Rust)","sig":128,"sign_us":1.5750283268494747,"verify_us":0.8415522591036968}
+{"impl":"portable","incl_sha3":true,"n_sign":318745,"n_verify":1080007,"omega":10,"psi":16,"scheme":"SILMARILS-MV (Rust)","sig":352,"sign_us":3.1373091122998003,"verify_us":0.9259208153280488}
+{"impl":"portable","incl_sha3":true,"n_sign":184442,"n_verify":949720,"omega":20,"psi":16,"scheme":"SILMARILS-MV (Rust)","sig":672,"sign_us":5.421771337330977,"verify_us":1.0529422661415995}
+{"impl":"portable","incl_sha3":true,"n_sign":119178,"n_verify":834779,"omega":33,"psi":16,"scheme":"SILMARILS-MV (Rust)","sig":1088,"sign_us":8.390815100102369,"verify_us":1.1979228047183748}
+{"impl":"portable","incl_sha3":true,"n_sign":65136,"n_verify":631799,"omega":66,"psi":16,"scheme":"SILMARILS-MV (Rust)","sig":2144,"sign_us":15.352676983542125,"verify_us":1.5827836194739149}
+{"impl":"portable","incl_sha3":true,"n_sign":1385605,"n_verify":1896166,"omega":10,"psi":1,"scheme":"SILMARILS-MV (Rust)","sig":352,"sign_us":0.7217065635588786,"verify_us":0.5273802066907645}
+{"impl":"portable","incl_sha3":true,"n_sign":99067,"n_verify":478658,"omega":10,"psi":64,"scheme":"SILMARILS-MV (Rust)","sig":352,"sign_us":10.094271291146395,"verify_us":2.0891782274609425}

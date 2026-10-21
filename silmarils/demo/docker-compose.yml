@@ -1,0 +1,8 @@
+services:
+  silmarils-demo:
+    build: .
+    ports:
+      - "8765:8765"
+    restart: unless-stopped
+    environment:
+      - PORT=8765

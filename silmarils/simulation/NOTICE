@@ -1,0 +1,8 @@
+SILMARILS simulation package
+Electronic supplementary material for the IACR CIC performance evaluation (Section 9).
+
+Please cite the accompanying SILMARILS paper when using this code or the
+measured PQ timing data in output/pq_hardware_benchmark.json.
+
+The pqcrypto dependency (optional, for re-running hardware benchmarks)
+redistributes PQClean reference implementations under their upstream licenses.

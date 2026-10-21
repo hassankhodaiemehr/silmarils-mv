@@ -1,0 +1,38 @@
+[
+ {
+  "n": 4,
+  "psi": 8,
+  "issuance_per_index": 164.0,
+  "open_to_client_per_index": 36.0,
+  "formula_iss": 162.66666666666666,
+  "batches_valid_accepted": true,
+  "batches_with_one_invalid_rejected": true
+ },
+ {
+  "n": 7,
+  "psi": 8,
+  "issuance_per_index": 339.0,
+  "open_to_client_per_index": 63.0,
+  "formula_iss": 336.19999999999993,
+  "batches_valid_accepted": true,
+  "batches_with_one_invalid_rejected": true
+ },
+ {
+  "n": 10,
+  "psi": 8,
+  "issuance_per_index": 522.0,
+  "open_to_client_per_index": 90.0,
+  "formula_iss": 511.28571428571433,
+  "batches_valid_accepted": true,
+  "batches_with_one_invalid_rejected": true
+ },
+ {
+  "n": 13,
+  "psi": 8,
+  "issuance_per_index": 710.0,
+  "open_to_client_per_index": 117.0,
+  "formula_iss": 686.8888888888889,
+  "batches_valid_accepted": true,
+  "batches_with_one_invalid_rejected": true
+ }
+]

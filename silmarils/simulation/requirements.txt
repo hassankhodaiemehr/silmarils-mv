@@ -1,0 +1,4 @@
+# Post-quantum reference implementations (PQClean via pqcrypto).
+# Used only by benchmark_pq_hardware.py; generate_paper_results.py can
+# reuse the included output/pq_hardware_benchmark.json without reinstalling.
+pqcrypto==0.4.0

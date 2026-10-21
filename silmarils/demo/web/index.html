@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SILMARILS Demo | Quantum Transition Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="silmarils-crypto.js" defer></script>
+  <script src="models.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__top">
+        <div class="hero__badge">Quantum Transition Labs · QTL</div>
+        <a class="hero__link" href="https://www.qtransitionlabs.com/research/" target="_blank" rel="noopener">Research ↗</a>
+      </div>
+      <h1>SILMARILS on Permissioned Ledgers</h1>
+      <p class="hero__lead">
+        Compare <strong>160-byte</strong> information-theoretic TDV authentication against
+        NIST post-quantum signatures — with live crypto, bandwidth models, and TPS impact.
+      </p>
+      <div class="stat-row" id="stat-row">
+        <div class="stat"><span class="stat__value">160 B</span><span class="stat__label">SILMARILS signature</span></div>
+        <div class="stat"><span class="stat__value" id="stat-factor">15×</span><span class="stat__label">smaller vs Dilithium-2</span></div>
+        <div class="stat"><span class="stat__value" id="stat-savings">93%</span><span class="stat__label">auth bandwidth saved</span></div>
+        <div class="stat stat--accent"><span class="stat__value" id="stat-tps-gain">—</span><span class="stat__label">hybrid vs full PQ retrofit</span></div>
+      </div>
+      <div class="alert">
+        <strong>Not a Dilithium replacement.</strong> SILMARILS is designated-verifier (TDV):
+        validators verify locally; public audit is receipt-controlled.
+      </div>
+    </header>
+
+    <main>
+      <section class="panel" id="live-demo">
+        <div class="panel__head">
+          <h2>Live authentication flow</h2>
+          <p>P1 signer → P2 mempool → P3 validator (designated verifier)</p>
+        </div>
+        <details class="explain" open>
+          <summary>What this simulation does</summary>
+          <ul>
+            <li>Runs a <strong>real</strong> two-party SILMARILS sign/verify cycle in your browser (Web Crypto + BigInt field arithmetic).</li>
+            <li><strong>Sign &amp; verify</strong> — P1 signs the JSON payload; P3 (designated verifier) checks the real signature.</li>
+            <li><strong>Simulate as DV</strong> — P3 verifies a <em>simulated</em> receipt (same size, different randomness) to show TDV behavior without re-signing.</li>
+            <li><strong>Public audit</strong> — any party runs <code>AuditVerify</code> on the published ledger transcript <code>(M, σ, r)</code> without shared secrets (MACs cannot do this).</li>
+            <li>Timings are local micro-benchmarks only — not network latency or batch verification.</li>
+          </ul>
+        </details>
+        <div class="flow">
+          <div class="flow__node">P1<br><small>Signer</small></div>
+          <div class="flow__arrow">tx + σ</div>
+          <div class="flow__node">P2<br><small>Holder</small></div>
+          <div class="flow__arrow">relay</div>
+          <div class="flow__node flow__node--accent">P3<br><small>Validator / DV</small></div>
+        </div>
+        <label class="field">
+          <span>Transaction payload (JSON)</span>
+          <textarea id="message-input" rows="3">{"from":"alice","to":"bob","amount":100,"nonce":42}</textarea>
+        </label>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="btn-sign">Sign &amp; verify</button>
+          <button class="btn btn--ghost" id="btn-simulate">Simulate as DV</button>
+        </div>
+        <div class="result-grid" id="live-results">
+          <div class="result"><span class="result__label">Real verify (DV)</span><span class="result__value muted">—</span></div>
+          <div class="result"><span class="result__label">Simulated verify</span><span class="result__value muted">—</span></div>
+          <div class="result"><span class="result__label">Public audit</span><span class="result__value muted">—</span></div>
+          <div class="result"><span class="result__label">Ledger transcript</span><span class="result__value muted">—</span></div>
+          <div class="result"><span class="result__label">Sign / verify</span><span class="result__value muted">—</span></div>
+        </div>
+      </section>
+
+      <section class="panel" id="tps-panel">
+        <div class="panel__head">
+          <h2>TPS impact calculator</h2>
+          <p>CPU and bandwidth bottlenecks on the transaction hot path.</p>
+        </div>
+        <details class="explain" open>
+          <summary>How TPS is modeled</summary>
+          <ul>
+            <li><strong>CPU-limited TPS</strong> — compares total sign+verify CPU per block to the block interval (<code>blocks/min</code>). If auth CPU exceeds block time, TPS drops proportionally.</li>
+            <li><strong>Bandwidth-limited TPS</strong> — the tighter of two caps:
+              <ul>
+                <li><strong>Block auth cap</strong> — max authentication bytes allowed per block (consensus payload limit).</li>
+                <li><strong>Network link</strong> — sustained auth throughput vs validator link speed (Mbps).</li>
+              </ul>
+            </li>
+            <li><strong>Combined (bottleneck)</strong> — <code>min(CPU TPS, bandwidth TPS)</code>. This is the effective TPS shown on the cards and the rightmost bar group.</li>
+            <li><strong>SILMARILS Hybrid</strong> — fixed ~2% CPU overhead (session-layer SLH-DSA + SILMARILS on hot path); bandwidth uses SILMARILS auth bytes.</li>
+            <li><strong>Full PQ retrofit</strong> — separate industry benchmark (~87% loss); not derived from the same CPU/bandwidth formulas.</li>
+          </ul>
+        </details>
+        <div class="controls controls--tps">
+          <label>Base chain TPS <output id="out-base-tps">10,000</output>
+            <input type="range" id="base-tps" min="1000" max="100000" value="10000" step="1000" />
+          </label>
+          <label>Validators <output id="out-tps-validators">7</output>
+            <input type="range" id="tps-validators" min="3" max="21" value="7" step="1" />
+          </label>
+          <label>Txs / block <output id="out-tps-tx">500</output>
+            <input type="range" id="tps-tx-per-block" min="100" max="2000" value="500" step="50" />
+          </label>
+          <label>Block auth cap <output id="out-block-cap">256 KiB</output>
+            <input type="range" id="block-auth-cap" min="65536" max="2097152" value="262144" step="65536" />
+          </label>
+          <label>Validator link <output id="out-network-mbps">100</output> Mbps
+            <input type="range" id="network-mbps" min="10" max="1000" value="100" step="10" />
+          </label>
+        </div>
+        <div class="tps-highlight" id="tps-highlight">
+          <div class="tps-card tps-card--best">
+            <span class="tps-card__label">SILMARILS Hybrid</span>
+            <span class="tps-card__value" id="tps-hybrid">—</span>
+            <span class="tps-card__meta" id="tps-hybrid-loss">—</span>
+          </div>
+          <div class="tps-card tps-card--best">
+            <span class="tps-card__label">SILMARILS (full hot path)</span>
+            <span class="tps-card__value" id="tps-silmarils">—</span>
+            <span class="tps-card__meta" id="tps-silmarils-loss">—</span>
+          </div>
+          <div class="tps-card">
+            <span class="tps-card__label">Dilithium-2 (full hot path)</span>
+            <span class="tps-card__value" id="tps-dilithium">—</span>
+            <span class="tps-card__meta" id="tps-dilithium-loss">—</span>
+          </div>
+          <div class="tps-card tps-card--warn">
+            <span class="tps-card__label">Full PQ retrofit benchmark</span>
+            <span class="tps-card__value" id="tps-retrofit">—</span>
+            <span class="tps-card__meta" id="tps-retrofit-loss">—</span>
+          </div>
+        </div>
+        <div class="chart-card chart-card--full">
+          <h3>Effective TPS: CPU vs bandwidth vs combined</h3>
+          <p class="chart-legend-note">Grouped bars per scheme — teal/gold = CPU/bandwidth limits; accent/red = combined bottleneck TPS.</p>
+          <canvas id="chart-tps"></canvas>
+        </div>
+        <div class="table-wrap">
+          <table id="tps-breakdown" class="tps-breakdown">
+            <thead>
+              <tr>
+                <th>Scheme</th>
+                <th>CPU TPS</th>
+                <th>CPU loss</th>
+                <th>BW TPS</th>
+                <th>BW loss</th>
+                <th>Combined</th>
+                <th>Bottleneck</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="fine-print">Hybrid: SILMARILS on consensus + user auth, SLH-DSA at session layer (~2% CPU). Full retrofit: industry 84–90% TPS loss range (whole-chain PQ migration).</p>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2>Ledger workload model</h2>
+          <p>Authentication bandwidth and CPU by scheme.</p>
+        </div>
+        <details class="explain" open>
+          <summary>What the ledger model counts</summary>
+          <ul>
+            <li>Each block includes <strong>user transactions</strong> (85% of txs/block) and <strong>consensus messages</strong> (<code>validators × (validators−1) × 3 rounds</code>).</li>
+            <li>Every message carries one signature → <strong>auth bytes/block</strong> = sig size × (user txs + consensus msgs).</li>
+            <li><strong>Verify CPU</strong> assumes each validator verifies user txs once and incoming consensus msgs from peers.</li>
+            <li>Charts compare raw signature size and total auth payload — this is where SILMARILS’s 160 B vs Dilithium’s 2.4 KiB shows up most clearly.</li>
+          </ul>
+        </details>
+        <div class="controls">
+          <label>Validators <output id="out-validators">7</output>
+            <input type="range" id="validators" min="3" max="21" value="7" step="1" />
+          </label>
+          <label>Txs / block <output id="out-tx">500</output>
+            <input type="range" id="tx-per-block" min="100" max="2000" value="500" step="50" />
+          </label>
+          <label>Blocks / min <output id="out-bpm">2.0</output>
+            <input type="range" id="blocks-per-minute" min="0.5" max="10" value="2" step="0.5" />
+          </label>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>Signature sizes (log scale)</h3>
+            <canvas id="chart-sizes"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Auth bytes per block</h3>
+            <canvas id="chart-ledger"></canvas>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="compare-table">
+            <thead>
+              <tr>
+                <th>Scheme</th>
+                <th>Sig</th>
+                <th>Verifier</th>
+                <th>Auth / block</th>
+                <th>Auth / min</th>
+                <th>Verify CPU</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel panel--split">
+        <div>
+          <div class="panel__head"><h2>Hybrid deployment stack</h2></div>
+          <details class="explain">
+            <summary>Why hybrid, not full replacement</summary>
+            <ul>
+              <li>Public bridges and governance need <strong>public verifiability</strong> (ML-DSA / SLH-DSA).</li>
+              <li>High-frequency consensus and user auth use <strong>SILMARILS TDV</strong> — 160 B receipts between known validators.</li>
+              <li>Transport stays on TLS 1.3 with pairwise <code>k<sub>sig</sub></code> keys; PQ migration is layered, not a single swap.</li>
+            </ul>
+          </details>
+          <ul class="stack-list">
+            <li><span class="pill pill--gold">Governance / bridge</span> ML-DSA / SLH-DSA (public verifier)</li>
+            <li><span class="pill pill--teal">Consensus + user auth</span> SILMARILS TDV receipts</li>
+            <li><span class="pill pill--muted">Transport</span> TLS 1.3 → pairwise <code>k<sub>sig</sub></code></li>
+          </ul>
+        </div>
+        <div>
+          <div class="panel__head"><h2>References</h2></div>
+          <ul class="stack-list">
+            <li><a href="https://arxiv.org/abs/2605.03230" target="_blank" rel="noopener">SILMARILS paper (arXiv)</a></li>
+            <li><a href="https://github.com/eternax-ai/silmarils-paper" target="_blank" rel="noopener">Rust reference implementation</a></li>
+            <li><a href="https://www.qtransitionlabs.com/research/" target="_blank" rel="noopener">QTL Research publications</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span><a href="https://www.qtransitionlabs.com">Quantum Transition Labs</a> · UBC Okanagan · EternaX Labs</span>
+      <span>SILMARILS — IACR CIC / arXiv · Runs fully in your browser</span>
+    </footer>
+  </div>
+</body>
+</html>

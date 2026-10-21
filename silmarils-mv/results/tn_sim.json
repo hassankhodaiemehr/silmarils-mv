@@ -1,0 +1,134 @@
+[
+ {
+  "n": 4,
+  "t": 1,
+  "omega": 3,
+  "psi": 4,
+  "N": 8,
+  "verifiers": 4,
+  "epoch_elems": 64,
+  "per_index_elems": 441.5,
+  "per_index_formula": 440.0,
+  "rel_err": 0.003409090909090909,
+  "certs_ok": true,
+  "paths": {
+   "optimistic": 31,
+   "decode": 1,
+   "fail": 0
+  },
+  "late_enrolment_ok": true,
+  "reshare_to": 7,
+  "reshare_ok": true,
+  "bad_dealers_detected": true,
+  "strategies": [
+   "garbage"
+  ]
+ },
+ {
+  "n": 7,
+  "t": 2,
+  "omega": 3,
+  "psi": 4,
+  "N": 8,
+  "verifiers": 4,
+  "epoch_elems": 112,
+  "per_index_elems": 884.0,
+  "per_index_formula": 884.0,
+  "rel_err": 0.0,
+  "certs_ok": true,
+  "paths": {
+   "optimistic": 31,
+   "decode": 1,
+   "fail": 0
+  },
+  "late_enrolment_ok": true,
+  "reshare_to": 10,
+  "reshare_ok": true,
+  "bad_dealers_detected": true,
+  "strategies": [
+   "garbage",
+   "silent"
+  ]
+ },
+ {
+  "n": 10,
+  "t": 3,
+  "omega": 3,
+  "psi": 4,
+  "N": 8,
+  "verifiers": 4,
+  "epoch_elems": 160,
+  "per_index_elems": 1336.25,
+  "per_index_formula": 1331.4285714285716,
+  "rel_err": 0.003621244635193035,
+  "certs_ok": true,
+  "paths": {
+   "optimistic": 32,
+   "decode": 0,
+   "fail": 0
+  },
+  "late_enrolment_ok": true,
+  "reshare_to": 13,
+  "reshare_ok": true,
+  "bad_dealers_detected": true,
+  "strategies": [
+   "equivocate",
+   "garbage",
+   "silent"
+  ]
+ },
+ {
+  "n": 13,
+  "t": 4,
+  "omega": 3,
+  "psi": 4,
+  "N": 8,
+  "verifiers": 4,
+  "epoch_elems": 208,
+  "per_index_elems": 1793.0,
+  "per_index_formula": 1780.0,
+  "rel_err": 0.007303370786516854,
+  "certs_ok": true,
+  "paths": {
+   "optimistic": 31,
+   "decode": 1,
+   "fail": 0
+  },
+  "late_enrolment_ok": true,
+  "reshare_to": 16,
+  "reshare_ok": true,
+  "bad_dealers_detected": true,
+  "strategies": [
+   "equivocate",
+   "garbage",
+   "silent"
+  ]
+ },
+ {
+  "n": 16,
+  "t": 5,
+  "omega": 3,
+  "psi": 4,
+  "N": 8,
+  "verifiers": 4,
+  "epoch_elems": 256,
+  "per_index_elems": 2240.0,
+  "per_index_formula": 2229.090909090909,
+  "rel_err": 0.00489396411092989,
+  "certs_ok": true,
+  "paths": {
+   "optimistic": 32,
+   "decode": 0,
+   "fail": 0
+  },
+  "late_enrolment_ok": true,
+  "reshare_to": 19,
+  "reshare_ok": true,
+  "bad_dealers_detected": true,
+  "strategies": [
+   "equivocate",
+   "garbage",
+   "silent"
+  ]
+ }
+]

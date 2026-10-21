@@ -1,0 +1,46 @@
+[
+ {
+  "n": 4,
+  "t": 1,
+  "omega": 1,
+  "psi": 4,
+  "indices": 8,
+  "epoch_setup_elems": 56,
+  "per_index_elems": 300.0,
+  "per_index_formula": 300.0,
+  "keys_consistent": true
+ },
+ {
+  "n": 7,
+  "t": 2,
+  "omega": 2,
+  "psi": 4,
+  "indices": 14,
+  "epoch_setup_elems": 231,
+  "per_index_elems": 908.0,
+  "per_index_formula": 908.0,
+  "keys_consistent": true
+ },
+ {
+  "n": 10,
+  "t": 3,
+  "omega": 3,
+  "psi": 4,
+  "indices": 20,
+  "epoch_setup_elems": 670,
+  "per_index_elems": 1838.5,
+  "per_index_formula": 1831.4285714285716,
+  "keys_consistent": true
+ },
+ {
+  "n": 13,
+  "t": 4,
+  "omega": 4,
+  "psi": 4,
+  "indices": 26,
+  "epoch_setup_elems": 1313,
+  "per_index_elems": 3078.0,
+  "per_index_formula": 3070.0,
+  "keys_consistent": true
+ }
+]
