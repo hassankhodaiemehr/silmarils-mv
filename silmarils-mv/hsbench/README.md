@@ -8,7 +8,7 @@ A chained-HotStuff implementation (3-chain commit, round-robin leaders, timeout-
 | `ed25519`     | star       | Ed25519 votes, QC = 2t+1 signatures (not post-quantum)              |
 | `mldsa44`     | star       | ML-DSA-44 (PQClean, AVX2 on Linux), QC = 2t+1 signatures            |
 | `mldsa44-a2a` | all-to-all | ML-DSA-44 votes broadcast to everyone; each replica forms the QC locally |
-| `mac`         | all-to-all | one-time polynomial MACs over F_{2^255−19}; no transferable certificate |
+| `mac`         | all-to-all | MACs over F_{2^255−19} with fixed per-pair keys (timing model of the paper's polynomial Wegman–Carter MAC); no transferable certificate |
 | `mac-tn`      | all-to-all | `mac` + SILMARILS-MV threshold notarization: on commit, every replica releases a certificate share to a rotating combiner, which interpolates and checks it and sends the 544-byte certificate to 4 external auditors |
 
 Reported metrics, per run as one JSON line:
@@ -55,5 +55,7 @@ v1 started one timer task per delayed message. With all-to-all voting at n = 100
 ## Prompt for Cursor
 > Open the `hsbench` folder in WSL (Ubuntu). If an earlier `results/hs_results.jsonl` exists, move the whole `results/` folder to `results_v1/` first. Install Rust with rustup if `cargo` is missing. Run `cargo build --release` and `cargo test --release`. Then run `lscpu > results/host_cpu.txt`, `python3 run_matrix.py --preset full`, and `python3 summarize.py`. Do not modify the source code. When finished, report the contents of `results/hs_summary.md` and keep `results/hs_results.jsonl`.
 
-## Caveat (state it in the paper)
-All replicas share one machine. Under heavy signature verification at large n, total CPU becomes the bottleneck, which no geo-distributed deployment would share. For that reason we also report CPU time spent in cryptography per replica per block, which does not depend on colocation.
+## Caveats (stated in the paper)
+- **MAC variants (`mac`, `mac-tn`).** A replica accepts a QC only after receiving 2t+1 valid MAC-authenticated votes itself (`QcBody::Local`); a proposal whose QC it has not formed locally is held pending. This keeps HotStuff's quorum-intersection argument if the MACs are unforgeable, but Byzantine liveness under selective vote delivery is not addressed. For timing, `mac_tag` derives the key from a fixed per-pair value instead of consuming one-time pads, so the prototype MACs are **not** forgery-resistant; the pad material a deployment needs (32 B per tag and endpoint) is accounted analytically in the paper. The experiments use honest and crashed replicas only; they evaluate performance, not Byzantine safety.
+- **QC sizes.** `Qc::wire` charges 4 bytes per signer index in SILMARILS-MV aggregated QCs.
+- **Colocation.** All replicas share one machine. Under heavy signature verification at large n, total CPU becomes the bottleneck, which no geo-distributed deployment would share. For that reason we also report CPU time spent in cryptography per replica per block, which does not depend on colocation.

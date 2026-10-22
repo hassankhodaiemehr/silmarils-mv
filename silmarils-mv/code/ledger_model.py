@@ -7,6 +7,7 @@ B = {r['scheme']: r for r in json.load(open('../results/baselines.json'))}
 cb = [json.loads(l) for l in open('../results/c_bench.jsonl') if '"omega"' in l]
 HASH_NS = next(json.loads(l)['ns'] for l in open('../results/c_bench.jsonl') if 'hash' in l)
 PSI = 16; ELEM = 32
+IDX = 4   # bytes per signer index k_U (32-bit stream counter), carried by every vote and listed in every QC
 def fit(psi, key):
     pts = sorted((r['omega'], r[key]) for r in cb if r['psi'] == psi)
     xs, ys = zip(*pts); n = len(xs); mx, my = sum(xs)/n, sum(ys)/n
@@ -25,17 +26,18 @@ rows = []
 for n in [4, 7, 10, 13, 16, 22, 31, 49, 64, 100]:
     t = (n-1)//3; w = t; Q = 2*t+1; r = dict(n=n, t=t)
     for name, ab in [x for x in S if x[1] != 'silagg']:
-        if ab == "sil": sig = ELEM*(w+1); vus = (ver_fit(w) + HASH_NS)/1000
+        if ab == "sil": sig = ELEM*(w+1) + IDX; vus = (ver_fit(w) + HASH_NS)/1000
         else: sig = FAL_SIG if ab == "fal" else B[name]['sig']; vus = B[name]['verify_us']
         qc = Q*sig
         r[ab] = dict(sig=sig, qc=qc, leader=(n-1)*(qc+sig), total=n*sig + (n-1)*(qc+sig), cpu=(Q+1)*vus)
-    # aggregated QC (linear aggregation): one (omega+1)-vector + n-bit signer bitmap
-    aggqc = ELEM*(w+1) + (n+7)//8
+    # aggregated QC (linear aggregation): one (omega+1)-vector + n-bit signer bitmap + the index list (k_U)
+    aggqc = ELEM*(w+1) + (n+7)//8 + IDX*Q
     # verification of an aggregate: one <c,alpha> plus |Q| key-polynomial evaluations (psi mults each)
     fe_ns = next(json.loads(l)['ns'] for l in open('../results/c_bench.jsonl') if 'fe_mul' in l)
     agg_cpu = ((w+1)*fe_ns + Q*(PSI+1)*fe_ns + HASH_NS)/1000 + (ver_fit(w) + HASH_NS)/1000
-    r['silagg'] = dict(sig=ELEM*(w+1), qc=aggqc, leader=(n-1)*(aggqc+ELEM*(w+1)),
-                       total=n*ELEM*(w+1) + (n-1)*(aggqc+ELEM*(w+1)), cpu=agg_cpu)
+    vs = ELEM*(w+1) + IDX                        # one vote / proposal signature, including its index
+    r['silagg'] = dict(sig=vs, qc=aggqc, leader=(n-1)*(aggqc+vs),
+                       total=n*vs + (n-1)*(aggqc+vs), cpu=agg_cpu)
     Sb = n + 1                                   # signatures per block
     dki_total = Sb/PSI*dki_per_index(n, t, w, PSI, n, mal=True)*ELEM
     dki_sh_total = Sb/PSI*dki_per_index(n, t, w, PSI, n, mal=False)*ELEM
@@ -45,6 +47,7 @@ for n in [4, 7, 10, 13, 16, 22, 31, 49, 64, 100]:
     rows.append(r)
 json.dump(rows, open('../results/ledger.json', 'w'), indent=1)
 K = 1024
+import os; os.makedirs('../paper', exist_ok=True)
 with open('../paper/data_ledger.dat', 'w') as f:
     cols = ['n', 't'] + [a+s for _, a in S for s in ('qc', 'lead', 'tot', 'cpu')] + ['dkitot', 'dkiparty', 'tdtot', 'silleadoff', 'silaggleadoff']
     f.write(' '.join(cols) + '\n')

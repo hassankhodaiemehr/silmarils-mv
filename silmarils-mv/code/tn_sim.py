@@ -11,7 +11,7 @@ to coordinate-wise Reed-Solomon decoding with erasures.
 Byzantine members: garbage shares, silence, and shares on a conflicting message (equivocation).
 Also exercised: late (retroactive) verifier enrolment, robust redistribution of all shared state to a new
 committee of a different size (membership change / proactive refresh), and communication counts that are
-checked against the closed-form cost of Section V.
+checked against the closed-form cost of Section VIII-F.
 
 Field: Q = 2^61-1 by default; TNQ=257 (env) gives the small-field Monte-Carlo forgery experiment."""
 import random, json, os, sys
@@ -382,7 +382,8 @@ def run_av(n, psi=8, clients=6, L=24, bad_frac=0.0):
     """Arbiter-verified (omega = 0) client keys: gamma (scalar) and a_U (row vector) shared; the client receives
     a_U; the committee keeps [b_0] = gamma * a_U (one multiplication per entry). A batch of L signatures
     (alpha in F) is checked collectively: [delta_j] = [gamma] alpha_j - [b_0]^T e(m_j) (local), r opened after
-    the batch is fixed, [D] = sum_j r^j [delta_j], one multiplication by a random non-zero [rho], open rho*D."""
+    the batch is fixed, [D] = sum_{j=1..L} r^(j-1) [delta_j] (weights start at r^0, see Lemma 4), one multiplication
+    by a fresh random non-zero [rho], open rho*D."""
     net = Net(); C = Committee(n, net, strategy=None); C.strategy = {p: 'garbage' for p in C.bad}
     g = C.rnd(); a, b0 = {}, {}
     for u in range(clients):
@@ -395,10 +396,11 @@ def run_av(n, psi=8, clients=6, L=24, bad_frac=0.0):
         r = C.open_to(C.rnd()); net.send(n * (n - 1) - n)          # common coin (opened to all)
         D = [0] * n
         for j, (u, m, al) in enumerate(sigs):
-            e = ev(m, psi); rj = pow(r, j + 1, Q)
+            e = ev(m, psi); rj = pow(r, j, Q)              # j is 0-based: weight r^(j-1) for item j = 1..L
             dl = [(g[p] * al - sum(b0[u][l][p] * e[l] for l in range(psi + 1))) % Q for p in range(n)]
             D = [(x + rj * y) % Q for x, y in zip(D, dl)]
-        rho = C.rnd(); v = C.open_to(C.ip([rho], [D])); net.send(n * (n - 1) - n)
+        rho = C.rnd()   # fresh mask per test; the protocol uses a preprocessed non-zero mask (zero has probability 1/q)
+        v = C.open_to(C.ip([rho], [D])); net.send(n * (n - 1) - n)
         return v == 0
     ok_valid, ok_invalid = True, True
     for trial in range(10):

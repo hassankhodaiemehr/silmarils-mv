@@ -38,9 +38,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 3220.75,
-   "leader": 3703.0,
-   "cert": 65,
+   "party": 3236.75,
+   "leader": 3767.0,
+   "cert": 77,
    "certver": null,
    "cpu": null,
    "offline": 3060.0
@@ -117,9 +117,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 9276.285714285714,
-   "leader": 10844.857142857143,
-   "cert": 97,
+   "party": 9300.857142857143,
+   "leader": 11016.857142857143,
+   "cert": 117,
    "certver": null,
    "cpu": null,
    "offline": 9014.857142857143
@@ -196,9 +196,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 18387.0,
-   "leader": 21628.8,
-   "cert": 130,
+   "party": 18419.8,
+   "leader": 21956.8,
+   "cert": 158,
    "certver": null,
    "cpu": null,
    "offline": 18026.8
@@ -275,9 +275,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 45782.375,
-   "leader": 54090.5,
-   "cert": 194,
+   "party": 45831.375,
+   "leader": 54874.5,
+   "cert": 238,
    "certver": null,
    "cpu": null,
    "offline": 45228.5
@@ -354,9 +354,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 167817.03225806452,
-   "leader": 198931.87096774194,
-   "cert": 356,
+   "party": 167906.1935483871,
+   "leader": 201695.87096774194,
+   "cert": 440,
    "certver": null,
    "cpu": null,
    "offline": 166779.87096774194
@@ -433,9 +433,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 415237.0612244898,
-   "leader": 492836.4081632653,
-   "cert": 551,
+   "party": 415374.28571428574,
+   "leader": 499560.4081632653,
+   "cert": 683,
    "certver": null,
    "cpu": null,
    "offline": 413620.4081632653
@@ -512,9 +512,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 1714485.99,
-   "leader": 2036741.88,
-   "cert": 1101,
+   "party": 1714759.2699999998,
+   "leader": 2064069.88,
+   "cert": 1369,
    "certver": null,
    "cpu": null,
    "offline": 1711230.88
@@ -591,9 +591,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 3898074.2913907287,
-   "leader": 4632063.033112583,
-   "cert": 1651,
+   "party": 3898483.5894039734,
+   "leader": 4693867.033112583,
+   "cert": 2055,
    "certver": null,
    "cpu": null,
    "offline": 3893181.0331125828
@@ -670,9 +670,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 15445893.581395349,
-   "leader": 18359613.182724252,
-   "cert": 3270,
+   "party": 15446702.897009967,
+   "leader": 18603217.182724252,
+   "cert": 4074,
    "certver": null,
    "cpu": null,
    "offline": 15436181.182724252
@@ -749,9 +749,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 42913640.699203186,
-   "leader": 51014538.24302789,
-   "cert": 5439,
+   "party": 42914986.02191235,
+   "leader": 51689890.24302789,
+   "cert": 6779,
    "certver": null,
    "cpu": null,
    "offline": 42897471.24302789
@@ -828,9 +828,9 @@
    "cpu": null
   },
   "iv": {
-   "party": 170145398.787,
-   "leader": 202280730.288,
-   "cert": 10813,
+   "party": 170148072.11499998,
+   "leader": 204954058.288,
+   "cert": 13481,
    "certver": null,
    "cpu": null,
    "offline": 170113231.288

@@ -1,6 +1,12 @@
-"""Baseline signature timings on the same host (PQClean 'clean' C via pqcrypto 0.4.0; Ed25519 via OpenSSL)."""
+"""Portable cross-check of the baseline signature timings (PQClean 'clean' C via pqcrypto 0.4.0; Ed25519 via OpenSSL).
+
+The paper uses the AVX2 baselines of hsbench/run_baselines.sh, converted by make_baselines.py.
+This script produced the superseded measurements in results/cloud_2vcpu/baselines.json and is kept
+for reference. Set PQCRYPTO_PATH if pqcrypto is installed outside the default Python path.
+"""
 import sys, time, json, os, importlib, statistics
-sys.path.insert(0, '/tmp/pq04x')
+if os.environ.get('PQCRYPTO_PATH'):
+    sys.path.insert(0, os.environ['PQCRYPTO_PATH'])
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 msg = os.urandom(128)
 
@@ -26,5 +32,6 @@ for name, label, reps in [("ml_dsa_44", "ML-DSA-44", 600), ("ml_dsa_65", "ML-DSA
     r["sign_us"] = bench(lambda: m.sign(sk_, msg), reps)
     r["verify_us"] = bench(lambda: m.verify(pk_, msg, sg), max(reps * 5, 20) if "SLH" not in label else 50)
     res.append(r); print(json.dumps(r)); sys.stdout.flush()
-json.dump(res, open('/home/claude/silmv/results/baselines.json', 'w'), indent=1)
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results', 'baselines_portable.json')
+json.dump(res, open(OUT, 'w'), indent=1)
 print(json.dumps(res[0]))

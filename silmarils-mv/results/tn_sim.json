@@ -37,8 +37,8 @@
   "rel_err": 0.0,
   "certs_ok": true,
   "paths": {
-   "optimistic": 31,
-   "decode": 1,
+   "optimistic": 32,
+   "decode": 0,
    "fail": 0
   },
   "late_enrolment_ok": true,
@@ -63,8 +63,8 @@
   "rel_err": 0.003621244635193035,
   "certs_ok": true,
   "paths": {
-   "optimistic": 32,
-   "decode": 0,
+   "optimistic": 31,
+   "decode": 1,
    "fail": 0
   },
   "late_enrolment_ok": true,
@@ -117,8 +117,8 @@
   "rel_err": 0.00489396411092989,
   "certs_ok": true,
   "paths": {
-   "optimistic": 32,
-   "decode": 0,
+   "optimistic": 31,
+   "decode": 1,
    "fail": 0
   },
   "late_enrolment_ok": true,

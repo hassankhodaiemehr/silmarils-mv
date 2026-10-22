@@ -16,6 +16,7 @@ TNB = [json.loads(l) for l in open('../results/tn_bench.jsonl')]
 FE_MUL_US = next(json.loads(l)['ns'] for l in open('../results/c_bench.jsonl') if 'fe_mul' in l) / 1000
 HASH_NS = next(json.loads(l)['ns'] for l in open('../results/c_bench.jsonl') if 'hash' in l)
 ELEM, TAG, K = 32, 32, 1024
+IDX = 4                                              # bytes per signer index in IV votes and QCs
 W_EXT, PSI_TN, NU, EPOCH = 16, 64, 64, 3600          # TN: omega, psi, external verifiers, blocks/epoch
 FAL = 666; BLS_SIG = 96
 MAC_US = 0.2                                          # one-time polynomial MAC on a 32-byte digest (2 mults + pad)
@@ -55,7 +56,7 @@ for n in ns:
     r['bls'] = dict(party=(n * BLS_SIG + (n - 1) * (bqc + BLS_SIG)) / n, leader=(n - 1) * (bqc + BLS_SIG) + n * BLS_SIG,
                     cert=bqc, certver=None, cpu=None)
     # SILMARILS-MV IV (omega = t, psi = 16), aggregated QC, dealer-free issuance (malicious model)
-    w, psi = t, 16; sig = ELEM * (w + 1); aq = sig + (n + 7) // 8
+    w, psi = t, 16; sig = ELEM * (w + 1) + IDX; aq = ELEM * (w + 1) + (n + 7) // 8 + IDX * q2
     off = (n + 1) / psi * dki_idx(n, t, w, psi, n) * ELEM / n
     r['iv'] = dict(party=(n * sig + (n - 1) * (aq + sig)) / n + off, leader=(n - 1) * (aq + sig) + n * sig + off,
                    cert=aq, certver=None, cpu=None, offline=off)
@@ -88,6 +89,7 @@ for n in ns:
     rows.append(r)
 json.dump(rows, open('../results/scale.json', 'w'), indent=1)
 keys = ['d44s', 'd44a', 'fals', 'eds', 'bls', 'iv', 'mac', 'tn', 'tna']
+import os; os.makedirs('../paper', exist_ok=True)
 with open('../paper/data_scale.dat', 'w') as f:
     f.write('n ' + ' '.join(k + s for k in keys for s in ('p', 'l', 'c')) + '\n')
     for r in rows:

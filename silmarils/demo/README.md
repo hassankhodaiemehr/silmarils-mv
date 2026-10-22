@@ -45,7 +45,7 @@ Production: deploy to Fly.io, Railway, or Azure Container Apps and set `demo_url
 
 The demo is embedded at **https://www.qtransitionlabs.com/demo/** via:
 
-- `C:\Users\hassa\Projects\qtransitionlabs\silmarils-demo.md`
+- the `silmarils-demo.md` page of the website repository
 - Nav link **Demo** in `_includes/nav.html`
 - `demo_url` in `_config.yml` (default: `http://localhost:8765`)
 

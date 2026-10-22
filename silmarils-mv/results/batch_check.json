@@ -1,0 +1,98 @@
+[
+ {
+  "q": 3,
+  "L": 1,
+  "weights": "r^j (original)",
+  "max_accept": 0.7037037037037037,
+  "bound": 0.6666666666666666,
+  "within": false
+ },
+ {
+  "q": 3,
+  "L": 1,
+  "weights": "r^(j-1) (corrected)",
+  "max_accept": 0.5555555555555556,
+  "bound": 0.6666666666666666,
+  "within": true
+ },
+ {
+  "q": 3,
+  "L": 2,
+  "weights": "r^j (original)",
+  "max_accept": 0.7037037037037037,
+  "bound": 1.0,
+  "within": true
+ },
+ {
+  "q": 3,
+  "L": 2,
+  "weights": "r^(j-1) (corrected)",
+  "max_accept": 0.5555555555555556,
+  "bound": 1.0,
+  "within": true
+ },
+ {
+  "q": 5,
+  "L": 1,
+  "weights": "r^j (original)",
+  "max_accept": 0.488,
+  "bound": 0.4,
+  "within": false
+ },
+ {
+  "q": 5,
+  "L": 1,
+  "weights": "r^(j-1) (corrected)",
+  "max_accept": 0.36,
+  "bound": 0.4,
+  "within": true
+ },
+ {
+  "q": 5,
+  "L": 2,
+  "weights": "r^j (original)",
+  "max_accept": 0.488,
+  "bound": 0.6,
+  "within": true
+ },
+ {
+  "q": 5,
+  "L": 2,
+  "weights": "r^(j-1) (corrected)",
+  "max_accept": 0.36,
+  "bound": 0.6,
+  "within": true
+ },
+ {
+  "q": 7,
+  "L": 1,
+  "weights": "r^j (original)",
+  "max_accept": 0.37026239067055394,
+  "bound": 0.2857142857142857,
+  "within": false
+ },
+ {
+  "q": 7,
+  "L": 1,
+  "weights": "r^(j-1) (corrected)",
+  "max_accept": 0.2653061224489796,
+  "bound": 0.2857142857142857,
+  "within": true
+ },
+ {
+  "q": 7,
+  "L": 2,
+  "weights": "r^j (original)",
+  "max_accept": 0.37026239067055394,
+  "bound": 0.42857142857142855,
+  "within": true
+ },
+ {
+  "q": 7,
+  "L": 2,
+  "weights": "r^(j-1) (corrected)",
+  "max_accept": 0.2653061224489796,
+  "bound": 0.42857142857142855,
+  "within": true
+ }
+]

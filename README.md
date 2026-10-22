@@ -1,6 +1,6 @@
 # SILMARILS-MV
 
-Research code for **SILMARILS-MV**, a multi-validator extension of SILMARILS with threshold notarization and HotStuff-scale evaluation (IEEE TIFS submission; preprint forthcoming). The repo also includes simulation and demo code for the **original SILMARILS** framework ([arXiv:2605.03230](https://arxiv.org/abs/2605.03230)).
+Research code for **SILMARILS-MV**, an information-theoretically secure multi-verifier signature built on SILMARILS, with dealer-free key issuance, linear aggregation, threshold notarization and a HotStuff prototype (IEEE TIFS submission; preprint forthcoming). The repo also includes simulation and demo code for the **original SILMARILS** framework ([arXiv:2605.03230](https://arxiv.org/abs/2605.03230)).
 
 ## Layout
 
