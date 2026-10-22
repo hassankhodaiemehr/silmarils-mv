@@ -9,3 +9,5 @@ tn_bench
 ed_bench
 .venv/
 .DS_Store
+scripts/commit-as-owner.ps1
+.empty_hooks/
